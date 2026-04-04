@@ -1,0 +1,1 @@
+[2026-04-04 18:36:03.197696 - errors] WARNING: ArgumentException: The first word of input must be a command.
