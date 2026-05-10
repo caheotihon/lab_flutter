@@ -16,10 +16,20 @@ class HomeScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text("Cuisine"),
+        backgroundColor: Colors.white,
+        elevation: 0.5,
+        leading: Builder(
+          builder: (ctx) => IconButton(
+            icon: Icon(Icons.menu, color: Colors.black87),
+            onPressed: () => Scaffold.of(ctx).openDrawer(),
+          ),
+        ),
+        title: Text('Restaurant App', style: TextStyle(color: Colors.red.shade700, fontWeight: FontWeight.bold)),
+        centerTitle: true,
+        iconTheme: IconThemeData(color: Colors.black87),
         actions: [
           IconButton(
-            icon: Icon(Icons.shopping_cart),
+            icon: Icon(Icons.shopping_cart, color: Colors.black87),
             onPressed: () => Navigator.push(context, MaterialPageRoute(builder: (_) => CartScreen())),
           )
         ],
@@ -29,8 +39,8 @@ class HomeScreen extends StatelessWidget {
         child: ListView(
           children: [
             DrawerHeader(
-              decoration: BoxDecoration(color: Colors.blue),
-              child: Text("Menu", style: TextStyle(color: Colors.white, fontSize: 24)),
+              decoration: BoxDecoration(color: Colors.white),
+              child: Text("Menu", style: TextStyle(color: Colors.black87, fontSize: 24)),
             ),
             ListTile(
               leading: Icon(Icons.exit_to_app),
@@ -44,24 +54,48 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
       // Hiển thị danh sách Cuisines dạng Grid
-      body: GridView.builder(
-        padding: EdgeInsets.all(10),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 3/2),
-        itemCount: cuisines.length,
-        itemBuilder: (ctx, i) {
-          return GestureDetector(
-            onTap: () {
-              // Điều hướng sang màn hình món ăn
-              Navigator.push(context, MaterialPageRoute(
-                builder: (_) => FoodListScreen(cuisineName: cuisines[i])
-              ));
-            },
-            child: Card(
-              color: Colors.orangeAccent,
-              child: Center(child: Text(cuisines[i], style: TextStyle(fontSize: 18, color: Colors.white))),
-            ),
-          );
-        },
+      body: Padding(
+        padding: const EdgeInsets.all(10.0),
+        child: GridView.builder(
+          itemCount: cuisines.length,
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, childAspectRatio: 0.95, mainAxisSpacing: 12, crossAxisSpacing: 12),
+          itemBuilder: (ctx, i) {
+            final name = cuisines[i];
+            final imageMap = {
+              'Chinese': 'assets/images/chinese.png',
+              'South Indian': 'assets/images/south-indian.png',
+              'Beverages': 'assets/images/beverages.png',
+              'North India': 'assets/images/north-indian.png',
+            };
+            final img = imageMap[name] ?? 'assets/images/placeholder-res.png';
+
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (_) => FoodListScreen(cuisineName: name)));
+              },
+              child: Card(
+                shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                elevation: 2,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: 90,
+                      height: 90,
+                      decoration: BoxDecoration(color: Colors.white, shape: BoxShape.circle),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Image.asset(img, fit: BoxFit.contain),
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(name, style: TextStyle(color: Colors.red.shade700, fontWeight: FontWeight.w600)),
+                  ],
+                ),
+              ),
+            );
+          },
+        ),
       ),
     );
   }

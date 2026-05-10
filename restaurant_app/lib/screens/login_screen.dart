@@ -47,32 +47,76 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(isLogin ? "Login" : "Sign Up")),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            if (!isLogin)
-              TextField(controller: _nameController, decoration: InputDecoration(labelText: 'Full Name')),
-            TextField(controller: _emailController, decoration: InputDecoration(labelText: 'Email')),
-            TextField(controller: _passwordController, decoration: InputDecoration(labelText: 'Password'), obscureText: true),
-            
-            if (isLogin)
-              Align(
-                alignment: Alignment.centerRight,
-                child: TextButton(onPressed: forgotPassword, child: Text("Forgot Password?")),
+      appBar: AppBar(title: Text(isLogin ? "Đăng nhập" : "Đăng ký")),
+      backgroundColor: Colors.white,
+      body: SingleChildScrollView(
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const SizedBox(height: 24),
+              // Title like mockup
+              Center(
+                child: Text('Restaurant App', style: TextStyle(fontSize: 26, color: Colors.red.shade700, fontWeight: FontWeight.bold)),
               ),
-              
-            ElevatedButton(
-              onPressed: submit,
-              child: Text(isLogin ? "Login" : "Sign Up"),
-            ),
-            TextButton(
-              onPressed: () => setState(() => isLogin = !isLogin),
-              child: Text(isLogin ? "Create new account" : "I already have an account"),
-            )
-          ],
+              const SizedBox(height: 24),
+
+              if (!isLogin)
+                TextField(
+                  controller: _nameController,
+                  decoration: InputDecoration(labelText: 'Username', border: UnderlineInputBorder()),
+                ),
+              if (!isLogin) const SizedBox(height: 12),
+
+              TextField(
+                controller: _emailController,
+                keyboardType: TextInputType.emailAddress,
+                decoration: InputDecoration(labelText: 'Email', border: UnderlineInputBorder()),
+              ),
+              const SizedBox(height: 12),
+              TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(labelText: 'Password', border: UnderlineInputBorder()),
+                obscureText: true,
+              ),
+              const SizedBox(height: 8),
+
+              if (isLogin)
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: TextButton(onPressed: forgotPassword, child: Text("Forgot Password?", style: TextStyle(color: Colors.orange))),
+                ),
+
+              const SizedBox(height: 8),
+              // Sign In (light grey rounded)
+              ElevatedButton(
+                onPressed: submit,
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.grey.shade300,
+                  foregroundColor: Colors.black87,
+                  shape: const StadiumBorder(),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Text(isLogin ? 'Sign In' : 'Sign Up'),
+                ),
+              ),
+              const SizedBox(height: 12),
+              // Sign Up (blue pill)
+              ElevatedButton(
+                onPressed: () => setState(() => isLogin = !isLogin),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.indigo.shade700,
+                  shape: const StadiumBorder(),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 16.0),
+                  child: Text(isLogin ? 'Sign Up' : 'I already have an account', style: TextStyle(color: Colors.white)),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );

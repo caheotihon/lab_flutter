@@ -16,9 +16,14 @@ class FoodProvider with ChangeNotifier {
   
   // Danh sách món ăn
   List<FoodModel> _foods = [
-    FoodModel(id: '1', name: 'Noodles', cuisine: 'Chinese', price: 100, imagePath: 'assets/images/noodles.png'),
-    FoodModel(id: '2', name: 'Fajita Chicken Burrito', cuisine: 'Mexican', price: 825, imagePath: 'assets/images/burrito.png'),
-    FoodModel(id: '3', name: 'Gulab Jamun', cuisine: 'North India', price: 126, imagePath: 'assets/images/gulab.png'),
+    FoodModel(id: '1', name: 'Noodles', cuisine: 'Chinese', price: 100, imagePath: 'assets/images/placeholder-food.png'),
+    FoodModel(id: '2', name: 'Fried Rice', cuisine: 'Chinese', price: 120, imagePath: 'assets/images/placeholder-food.png'),
+    FoodModel(id: '3', name: 'Dosa', cuisine: 'South Indian', price: 90, imagePath: 'assets/images/south-indian.png'),
+    FoodModel(id: '4', name: 'Idli', cuisine: 'South Indian', price: 50, imagePath: 'assets/images/south-indian.png'),
+    FoodModel(id: '5', name: 'Lassi', cuisine: 'Beverages', price: 40, imagePath: 'assets/images/beverages.png'),
+    FoodModel(id: '6', name: 'Thali', cuisine: 'North India', price: 150, imagePath: 'assets/images/north-indian.png'),
+    FoodModel(id: '7', name: 'Biryani', cuisine: 'North India', price: 180, imagePath: 'assets/images/biryani.png'),
+    FoodModel(id: '8', name: 'Pizza', cuisine: 'Chinese', price: 200, imagePath: 'assets/images/pizza.png'),
   ];
 
   List<String> get cuisines => _cuisines;
