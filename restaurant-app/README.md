@@ -1,51 +1,51 @@
-# Restaurant App
+# Ứng dụng Nhà hàng (Restaurant App)
 
-A full-stack food delivery application built with Flutter, Node.js, and MongoDB.
+Một ứng dụng giao đồ ăn hoàn chỉnh (full-stack) được xây dựng bằng Flutter, Node.js và MongoDB.
 
-## Team Members
+## Thành viên nhóm
 - **Trần Văn Tài**
 - **Trần Tấn Phúc**
 
-## Demo Video
-You can watch the application demo here: [Project Demo Video](https://drive.google.com/file/d/1oGIlXly-sIW-OcBQu2Xp8GSU6eYIN2Tm/view?usp=drive_link)
+## Video Demo
+Bạn có thể xem video mô tả ứng dụng tại đây: [Link Video Demo Dự Án](https://drive.google.com/file/d/1oGIlXly-sIW-OcBQu2Xp8GSU6eYIN2Tm/view?usp=drive_link)
 
-## Features
-- **Auth**: Login and Registration.
-- **Menu**: Browse food by culture/category (Chinese, Mexican, Indian, etc.).
-- **Cart**: Add/remove items and adjust quantities.
-- **Checkout**: Simulated payment success screen.
+## Tính năng chính
+- **Xác thực (Auth)**: Đăng nhập và Đăng ký tài khoản.
+- **Thực đơn (Menu)**: Duyệt món ăn theo văn hóa/danh mục (Trung Hoa, Mexico, Ấn Độ, v.v.).
+- **Giỏ hàng (Cart)**: Thêm/xóa món ăn và điều chỉnh số lượng.
+- **Thanh toán (Checkout)**: Màn hình mô phỏng thanh toán thành công.
 
-## Project Structure
-- `api/`: Node.js Express server.
-- `flutter_app/`: Flutter mobile application.
-- `assets/images/`: Image assets used in the app.
+## Cấu trúc dự án
+- `api/`: Server Node.js Express.
+- `flutter_app/`: Ứng dụng di động Flutter.
+- `assets/images/`: Các tệp hình ảnh sử dụng trong ứng dụng.
 
-## Technologies Used
-- **Frontend**: Flutter, Provider (State Management), Google Fonts.
+## Công nghệ sử dụng
+- **Frontend**: Flutter, Provider (Quản lý trạng thái), Google Fonts.
 - **Backend**: Node.js, Express, Mongoose.
-- **Database**: MongoDB.
+- **Database**: MongoDB Atlas.
 - **Auth**: JWT & Bcryptjs.
 
-## Backend Architecture & Connection
+## Kiến trúc Backend & Kết nối
 
-### 1. Database Connection (MongoDB)
-The application uses **MongoDB** as its primary database. The connection is managed through the `mongoose` library:
-- **Environment Variables**: Sensitive information like the MongoDB URI and Port are stored in a `.env` file for security.
-- **Connection Logic**: A dedicated `db.js` configuration file handles the asynchronous connection to MongoDB Atlas or a local instance. It ensures the server only starts once the database is successfully connected.
-- **Schema Design**: Models for `User`, `Category`, and `Food` are defined with strict types and relationships (e.g., each Food item references a Category ID).
+### 1. Kết nối Cơ sở dữ liệu (MongoDB)
+Ứng dụng sử dụng **MongoDB** làm cơ sở dữ liệu chính. Việc kết nối được quản lý thông qua thư viện `mongoose`:
+- **Biến môi trường**: Các thông tin nhạy cảm như URI MongoDB và Cổng (Port) được lưu trữ trong tệp `.env` để bảo mật.
+- **Logic kết nối**: Một tệp cấu hình `db.js` riêng biệt xử lý việc kết nối bất đồng bộ đến MongoDB Atlas. Server chỉ khởi động sau khi kết nối DB thành công.
+- **Thiết kế Schema**: Các Model cho `User`, `Category`, và `Food` được định nghĩa với kiểu dữ liệu chặt chẽ và có mối quan hệ với nhau (ví dụ: mỗi món ăn tham chiếu đến một ID danh mục).
 
-### 2. Node.js Server Construction
-The backend is built as a RESTful API using **Express.js**:
-- **Middleware**: Uses `express.json()` for parsing request bodies and `cors` to allow communication with the Flutter frontend.
-- **Authentication**: Implements **JWT (JSON Web Tokens)**. When a user logs in, the server signs a token that the mobile app stores to authenticate subsequent requests.
-- **Routing**: Modular routing is used to separate concerns:
-    - `/api/auth`: Handles registration and login logic.
-    - `/api/categories`: Fetches food categories.
-    - `/api/foods`: Handles food item retrieval and filtering.
-- **Seeding**: Includes a `seed.js` script to automatically populate the database with initial food and category data (using remote image URLs).
+### 2. Xây dựng Server Node.js
+Backend được xây dựng theo kiến trúc RESTful API sử dụng **Express.js**:
+- **Middleware**: Sử dụng `express.json()` để phân tích dữ liệu yêu cầu và `cors` để cho phép kết nối với ứng dụng Flutter.
+- **Xác thực**: Triển khai **JWT (JSON Web Tokens)**. Khi người dùng đăng nhập, server sẽ ký một token để ứng dụng di động lưu trữ và xác thực các yêu cầu tiếp theo.
+- **Định tuyến (Routing)**: Sử dụng các route mô-đun hóa để tách biệt các chức năng:
+    - `/api/auth`: Xử lý logic đăng ký và đăng nhập.
+    - `/api/categories`: Lấy danh sách danh mục món ăn.
+    - `/api/foods`: Xử lý việc truy xuất và lọc các món ăn.
+- **Dữ liệu mẫu (Seeding)**: Bao gồm một script `seed.js` để tự động đổ dữ liệu ban đầu cho món ăn và danh mục vào database (sử dụng link ảnh mạng).
 
-## Getting Started
-1. Navigate to the `api` folder and run `npm install`.
-2. Configure your `.env` file with `MONGO_URI` and `JWT_SECRET`.
-3. Start the server with `npm start` or `node server.js`.
-4. Run the Flutter app using `flutter run`.
+## Hướng dẫn bắt đầu
+1. Di chuyển vào thư mục `api` và chạy lệnh `npm install`.
+2. Cấu hình tệp `.env` của bạn với `MONGO_URI` và `JWT_SECRET`.
+3. Khởi động server bằng lệnh `npm start` hoặc `node server.js`.
+4. Chạy ứng dụng Flutter bằng lệnh `flutter run`.
