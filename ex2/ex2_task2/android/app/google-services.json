@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "439688268898",
+    "project_id": "ex2-task2",
+    "storage_bucket": "ex2-task2.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:439688268898:android:881f72c699d7420ff0153b",
+        "android_client_info": {
+          "package_name": "com.example.ex2_task2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWHcwGEq1O-a38Xm003crxcH5W5Okhxz0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
